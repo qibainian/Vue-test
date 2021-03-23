@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_v-if</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>用户名：{{username}}</h1>
+        <h3 v-if="isVip">用户类型：VIP</h3>
+        <h3 v-else>用户类型：普通用户</h3>
+        <hr>
+        <h1>用户允许登陆时间</h1>
+        <h3 v-if="age>18">允许24小时登陆</h3>
+        <h3 v-else-if="age>14">允许6小时登陆</h3>
+        <h3 v-else>允许3小时登陆</h3>
+    </div>
+
+    <script type="text/javascript">
+        //v-if 不显示时第一次不渲染，将内容从显示修改为不显示时直接将内容从dom中删除  需要反复切换内容时 使用v-show
+        let app = new Vue({
+            el:"#app",
+            data:{
+                username:"小林",
+                isVip:true,
+                age:19
+            }
+        })
+    </script>
+</body>
+</html>
