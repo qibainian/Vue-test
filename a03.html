@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_v-show</title>
+    <style type="text/css">
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="showBox">点我切换</button>
+        <div id="box" v-show="isShow"></div>
+
+    </div>
+
+    <script type="text/javascript">
+        //v-show  不显示时，行内style添加dislay:none 会渲染在dom上  需要反复切换内容时 使用v-show
+        let app = new Vue({
+            el:"#app",
+            data:{
+                isShow:true
+            },
+            methods:{
+                showBox:function(){
+                    app.isShow = !app.isShow
+                }
+            }
+        })
+    </script>
+</body>
+</html>
