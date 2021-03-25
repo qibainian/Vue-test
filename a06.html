@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_key</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="isLogin" class="login" key="login">
+            <h3>登陆</h3>
+            <input type="text" >
+        </div>
+        <div v-else class="register">
+            <h3>注册</h3>
+            <input type="password" key="register">
+        </div>
+        <button @click="toggle">切换</button>
+    </div>
+
+    <script>
+        //key 区分两个输入框不是同一个输入框
+        let app = new Vue({
+            el:"#app",
+            data:{
+                isLogin:true
+            },
+            methods:{
+                toggle:()=>{
+                    app.isLogin = !app.isLogin;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
