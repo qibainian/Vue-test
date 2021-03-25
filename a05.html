@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_v-for</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>明星列表</h3>
+        <ul>
+            <li v-for="item in stars">
+                {{item}}
+            </li>
+        </ul>
+        <h3>学生列表</h3>
+        <ul>
+            <li v-for="item,key in students">
+                <h4>索引值：{{key}}---名字：{{item.name}}</h4>
+                <p>年龄：{{item.age}}</p>
+            </li>
+        </ul>
+        <h3>循环对象</h3>
+        <ul>
+            <li v-for="item,key in students[0]">
+                key:{{key}}---value:{{item}}
+            </li>
+        </ul>
+        <img :src="students[0].img" alt="">
+        <h3>显示索引为奇数的学生</h3>
+        <ul>
+            <li v-for="item,key in students" v-if="key%2!=0">
+                key:{{key}}---value:{{item}}
+            </li>
+        </ul>
+        <h3>渲染年龄为偶数的学生</h3>
+        <ul>
+            <li v-for="item,key in students" v-if="item.age%2==0">
+                key:{{key}}---value:{{item}}
+            </li>
+        </ul>
+    </div>
+    
+    <script type="text/javascript">
+        let app = new Vue({
+            el:"#app",
+            data:{
+                stars:["陈奕迅","杨千嬅","林俊杰"],
+                students:[
+                    {
+                        name:"小周",
+                        age:19,
+                        img:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3392663359,4194879068&fm=26&gp=0.jpg"
+                    },
+                    {
+                        name:"小刘",
+                        age:17
+                    },
+                    {
+                        name:"小林",
+                        age:22
+                    },
+                    {
+                        name:"小李",
+                        age:20
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
