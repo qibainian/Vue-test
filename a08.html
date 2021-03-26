@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue计算属性</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 一般情况 -->
+        <h2>{{firstName+lastName}}</h2>
+        <!-- 使用计算属性 -->
+        <h2>{{fullName}}</h2>
+        <!-- 倒序输出单词 -->
+        <h2>{{word.split("").reverse().join("")}}</h2>
+        <h2>{{reverseWord}}</h2>
+
+        <ul>
+            <li v-for="item,index in evenStudents">
+                <h4>{{item.name}}</h4>
+                <p>{{item.age}}</p>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        let app = new Vue({
+            el: "#app",
+            data: {
+                firstName: "张",
+                lastName: "三",
+                word: "hello",
+                students:[
+                    {
+                        name:"小周",
+                        age:19
+                    },
+                    {
+                        name:"小刘",
+                        age:17
+                    },
+                    {
+                        name:"小林",
+                        age:22
+                    },
+                    {
+                        name:"小李",
+                        age:20
+                    }
+                ]
+            },
+            computed: {
+                //计算属性会将计算的结果进行缓存，只要计算的内容变量不变，就不会重新计算
+                fullName: function () {
+                    return this.firstName + this.lastName
+                }, 
+                reverseWord: function () {
+                    return this.word.split("").reverse().join("");                    
+                },
+                evenStudents:function(){
+                    let result = this.students.filter((item,i)=>{
+                        return item.age %2 == 0
+                    });
+                    return result;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
