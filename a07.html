@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style type="text/css">
+        #login{
+            background-color: skyblue;
+        }
+        #register{
+            background-color: pink;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <!--只插入一次，不能改变其值-->
+        <h2 v-once>{{msg}}</h2>
+
+        <!--插入html内容-->
+        <h3>{{htmlText}}</h3>
+        <h3 v-html="htmlText"></h3>
+
+        <div v-bind:id="idName">
+            <h1>登陆</h1>
+        </div>
+        <!--v-bind:id的缩写
+        <div :id="idName">
+            <h1>登陆</h1>
+        </div> -->
+
+        <h3>
+            {{firstName+lastName}}
+        </h3>
+
+        <h2>
+            {{isVip?"欢迎VIP用户":"您还不是VIP请充值"}}
+        </h2>
+
+        <!-- <button v-on:click="changeBg">点我一下</button> -->
+        <button @click="changeBg">点我一下</button>
+        
+    </div>
+
+    <script type="text/javascript">
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"hello vue",
+                htmlText:"<span>vue</span>",
+                idName:"login",
+                firstName:"张",
+                lastName:"三",
+                isVip:true
+            },
+            methods:{
+                changeBg:function(){
+                    document.body.style.background = "skyblue"; //不建议获取body
+                }
+            }
+        })
+    </script>
+</body>
+</html>
