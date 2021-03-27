@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue事件侦听器</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <h2>{{reverseMsg}}</h2>
+        <ul>
+            <li v-for="item in stars">{{item}}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"hello Vue",
+                stars:['小王',"小李","小黄"]
+            },
+            computed:{
+                reverseMsg:{
+                    get:function(){
+                        return this.msg.split("").reverse().join("")
+                    },
+                    set:function(value){
+                        this.msg = value.split("").reverse().join("")
+                    }
+                }
+            },
+            watch:{
+                msg:function(val){
+                    console.log("事件监听---")
+                    console.log(val);
+                },
+                stars:function(val){
+                    console.log("事件监听2---")
+                    console.log(val);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
