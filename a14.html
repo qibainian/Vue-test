@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue事件修饰符</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="btnParent" @click="parentEvent">
+            <!-- .stop阻止冒泡 -->
+            <button @click.stop="btnEvent">点击</button>  
+        </div>
+        <form action="" method="post">
+            <input type="text" name="username" id="" value=""/>
+            <!-- .prevent阻止默认事件 -->
+            <input @click.prevent="searchWeather" type="submit" value="提交"/>
+        </form>
+        <button @click.once="btnOnce">只触发一次按钮</button>
+    </div>
+
+    <script type="text/javascript">
+        let app = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods:{
+                parentEvent:function(){
+                    console.log('btnparent');
+                },
+                btnEvent:function(){
+                    console.log('btn');
+                },
+                searchWeather:function(){
+                    console.log('查询天气');
+                },
+                btnOnce:function(){
+                    console.log('只触发一次');
+                }
+            }
+        })
+    </script>
+</body>
+</html>
