@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue表单输入绑定</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{username}}</p>
+        <h2>单行文本</h2>
+        <input type="text" name="username" v-model="username" value="">
+
+        <h2>多行文本</h2>
+        <textarea name="username" v-model="username" cols="30" rows="3"></textarea>
+
+        <h2>复选框</h2>
+        <span v-for="item in fruits">
+            {{item}}
+            <input type="checkbox" name="" v-model="checkedFruits" :value="item">
+        </span>
+        <p>{{checkedFruits}}</p>
+
+        <h2>单选框</h2>
+        <span v-for="item in fruits">
+            {{item}}
+            <input type="radio" name="" v-model="radioFruits" :value="item">
+        </span>
+        <p>{{radioFruits}}</p>
+
+        <h2>选项框-单选</h2>
+        <select name="cities" v-model="chooseCity">
+            <option disabled value="">请选择</option>
+            <option :value="item" v-for="item in cities">{{item}}</option>
+        </select>
+        <p>{{chooseCity}}</p>
+
+        <h2>选项框-多选</h2>
+        <select name="cities" v-model="moreCity" multiple="multiple">
+            <option :value="item" v-for="item in cities">{{item}}</option>
+        </select>
+        <p>{{moreCity}}</p>
+    </div>
+
+    <script type="text/javascript">
+        let app = new Vue({
+            el:"#app",
+            data:{
+                username:"小林",
+                fruits:['橘子','西瓜','草莓','雪梨'],
+                checkedFruits:[],
+                radioFruits:"",
+                cities:['广州','深圳','汕尾','北京'],
+                chooseCity:"",
+                moreCity:[],
+            }
+        })
+    </script>
+</body>
+</html>
