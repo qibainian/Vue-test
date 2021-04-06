@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue组件生命周期</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if将isShow修改为false时 会销毁组件 -->
+        <hello-com v-if="isShow"></hello-com>
+        <!-- v-show将isShow修改为false时 不会销毁组件 -->
+        <hello-com v-show="isShow"></hello-com>
+    </div>
+
+    <script type="text/javascript">
+        let helloCom = Vue.component("hello-com",{
+            template:'<div><h1>{{item}}</h1><button @click="dataChange">修改数据</button></div>',
+            data:function(){
+                return{
+                    item:"Hello Vue"
+                }
+            },
+            methods:{
+                dataChange:function(){
+                    this.item = "Hi Vue"
+                }
+            },
+            //vue生命周期：创建 挂载 更新 销毁
+            beforeCreate(){
+                console.log("beforeCreate");
+                console.log(this.item);    //undefined
+            },
+            created(){
+                console.log("created");
+                console.log(this.item);    //Hello Vue
+            },
+            beforeMount(){
+                console.log("beforeMount");
+                
+            },
+            mounted(){
+                console.log("mounted");
+                
+            },
+            beforeUpdate(){
+                console.log("beforeUpdate");
+                console.log(this.item)
+            },
+            updated(){
+                console.log("updated");
+                console.log(this.item)
+            },
+            beforeDestroy(){
+                console.log("beforeDestroy");
+            },
+            destroyed(){
+                console.log("destroyed");
+            }
+        })
+        let app = new Vue({
+            el:"#app",
+            data:{
+                isShow:true
+            },
+            //注册组件
+            component:{
+                'hello-com':helloCom
+            }
+        })
+    </script>
+</body>
+</html>
