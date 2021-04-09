@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue组件传值3</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- 
+                 因为父元素的方法可以直接修改父元素的数据
+                 所以将父元素的方法传递给子元素
+                 然后子元素调用，从而修改父元素的数据
+             -->
+            <school v-for="item,index in schoolList" :action="changeEvent" :school-name="item" :key="'abc'+index"></school>
+        </ul>
+        <h3>选择的学校：{{chooseSchool}}</h3>
+    </div>
+
+    <script type="text/javascript">
+        //子组件
+        let school = Vue.component("school",{
+            props:['schoolName','action'],
+            template:`<li>
+                        <h3>{{schoolName}}</h3>
+                        <button @click="chooseEvent(schoolName)">选择学校</button>
+                      </li>`,
+            methods:{
+                chooseEvent:function(schoolName){
+                    this.action(schoolName);
+                }
+            }
+            
+        })
+        //父组件
+        let app = new Vue({
+            el:"#app",
+            data:{
+                schoolList:['清华','北大','深信','中大'],
+                chooseSchool:""
+            },
+            methods:{
+                changeEvent:function(data){
+                    this.chooseSchool = data;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
