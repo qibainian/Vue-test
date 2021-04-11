@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue组件中的v-model</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="username">
+        <input type="text" @input="username=$event.target.value" :value="username" name="" id="">
+        <h3>{{username}}</h3>
+    </div>
+
+    <script type="text/javascript">
+        let app = new Vue({
+            el:"#app",
+            data:{
+                username:""
+            }
+        })
+    </script>
+</body>
+</html>
