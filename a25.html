@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue组件中的v-model</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input-com :user="username" @child-input="changeEvent"></input-com>
+        <input-com :user="username" @child-input="username=$event"></input-com>
+        <h3>{{username}}</h3>
+    </div>
+
+    <script type="text/javascript">
+        let com = Vue.component('input-com',{
+            props:['user'],
+            template:`<input type="text" @input="$emit('child-input',$event.target.value)" :value="user">`,
+            
+        })
+        let app = new Vue({
+            el:"#app",
+            data:{
+                username:""
+            },
+            methods:{
+                changeEvent:function(data){
+                    this.username = data;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
