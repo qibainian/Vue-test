@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue插槽</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <alert-com :html="content"></alert-com>
+        <alert-com1 :html="content">
+            <!-- content指小心台阶 -->
+            <p>小心门缝---{{content}}</p>
+        </alert-com1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.component('alert-com',{
+            props:['html'],
+            template:`
+                        <div class="alert">
+                            <h2>温馨提示</h2>
+                            <div class="content" >
+                                {{html}}
+                            </div>
+                        </div>
+                    `,
+                        
+        })
+        Vue.component('alert-com1',{
+            props:['html'],
+            template:`
+                        <div class="alert">
+                            <h2>温馨提示</h2>
+                            <div class="content" >
+                                <slot></slot>
+                            </div>
+                        </div>
+                    `,
+                        
+        })
+        let app = new Vue({
+            el:"#app",
+            data:{
+                content:"小心台阶"
+            }
+        })
+    </script>
+</body>
+</html>
